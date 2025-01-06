@@ -7,25 +7,31 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`)
         .then(response => response.json())
         .then(post => {
-            // Fetch the photos related to the post's userId (albumId)
-            fetch(`https://jsonplaceholder.typicode.com/photos?albumId=${post.id}`)
-                .then(photoResponse => photoResponse.json())
-                .then(photos => {
-                    // Fetch comments for the post
-                    fetch(`https://jsonplaceholder.typicode.com/comments?postId=${postId}`)
-                        .then(commentResponse => commentResponse.json())    
-                        .then(comments => {
-                            // Call the function to display the post details, the first photo, and comments
-                            displayPostDetails(post, photos, comments);
+            // Fetch the user details (author's name) based on userId
+            fetch(`https://jsonplaceholder.typicode.com/users/${post.userId}`)
+                .then(userResponse => userResponse.json())
+                .then(user => {
+                    // Fetch the photos related to the post's userId (albumId)
+                    fetch(`https://jsonplaceholder.typicode.com/photos?albumId=${post.id}`)
+                        .then(photoResponse => photoResponse.json())
+                        .then(photos => {
+                            // Fetch comments for the post
+                            fetch(`https://jsonplaceholder.typicode.com/comments?postId=${postId}`)
+                                .then(commentResponse => commentResponse.json())    
+                                .then(comments => {
+                                    // Call the function to display the post details, the first photo, and comments
+                                    displayPostDetails(post, user, photos, comments);
+                                })
+                                .catch(commentError => console.error('Error fetching comments:', commentError));
                         })
-                        .catch(commentError => console.error('Error fetching comments:', commentError));
+                        .catch(photoError => console.error('Error fetching photos:', photoError));
                 })
-                .catch(photoError => console.error('Error fetching photos:', photoError));
+                .catch(userError => console.error('Error fetching user details:', userError));
         })
         .catch(error => console.error('Error fetching post details:', error));
 
     // Display post details, the first photo, and comments on the page
-    function displayPostDetails(post, photos, comments) {
+    function displayPostDetails(post, user, photos, comments) {
         const postDetailContainer = document.getElementById('post-detail');
 
         // Start the content string for the post
@@ -39,10 +45,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     <h2>${post.title}</h2>
                     <img src="${firstPhoto.url}" alt="${firstPhoto.title}" class="post-photo" />
                     <p>${post.body}</p>
-                    <h3>Author ID: ${post.userId}</h3>
-                                    <div class="comments-section">
-                    <h3>Comments:</h3>
-                    <ol>
+                    <h3>Author: ${user.name}</h3> <!-- Replaced userId with user name -->
+                    <div class="comments-section">
+                        <h3>Comments:</h3>
+                        <ol>
             `;
             // Iterate over each comment and display it
             comments.forEach(comment => {
@@ -58,7 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             postContent += `<p>No comments available for this post.</p>`;
         }
-                
 
         // Update the HTML with the post details, the photo, and comments
         postDetailContainer.innerHTML = postContent;
