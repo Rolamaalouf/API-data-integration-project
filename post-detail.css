@@ -1,0 +1,101 @@
+/* Main container */
+#post-detail {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Vertically center the content */
+    text-align: center;
+    max-width: 800px;
+    margin: -45px auto;
+    min-height: 100vh;
+}
+
+/* Post Body (paragraph) */
+p {
+    font-size: 16px;
+    color: #777;
+    margin-top: 10px;
+}
+
+.photo-container {
+    margin-bottom: 20px;
+    width: 70%; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: auto;
+}
+
+.post-photo {
+    width: auto; 
+    height: 20vh; 
+    object-fit: cover; 
+    max-width: 100%; 
+    border-radius: 8px;
+}
+
+/* Photo Title */
+.photo-title {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px;
+}
+.author-info {
+    width: 100%;
+    margin-top: -100px;
+}
+/* Comments Section */
+.comments-section {
+    margin-top: 40px;
+}
+
+.comments-section h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 15px;
+    font-weight: bold;
+    border-bottom: 2px solid #ffcc00;
+    padding-bottom: 5px;
+}
+
+.comment-item {
+    background-color: #f9f9f9;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.comment-item strong {
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.comment-item em {
+    color: #777;
+    font-size: 0.9rem;
+}
+
+.comment-item p {
+    font-size: 1rem;
+    color: #555;
+    margin-top: 10px;
+}
+
+/* For Mobile Responsiveness */
+@media (max-width: 768px) {
+    #post-detail {
+        padding: 15px;
+    }
+
+    .photo-container h2 {
+        font-size: 1.5rem;
+    }
+
+    .comment-item {
+        padding: 12px;
+    }
+
+    .comment-item p {
+        font-size: 0.9rem;
+    }
+}
