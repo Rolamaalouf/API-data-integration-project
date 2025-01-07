@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Create a post element with the corresponding photo
     function createPostElement(post, photos) {
         // Find the photo corresponding to the current post
-        const postPhoto = photos.find(photo => photo.albumId === post.id); // Assuming userId is used for photo correlation
+        const postPhoto = photos.find(photo => photo.id === post.id); // Assuming userId is used for photo correlation
 
         const postElement = document.createElement('div');
         postElement.classList.add('post-item');

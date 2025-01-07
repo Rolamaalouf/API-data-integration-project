@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 .then(userResponse => userResponse.json())
                 .then(user => {
                     // Fetch the photos related to the post's userId (albumId)
-                    fetch(`https://jsonplaceholder.typicode.com/photos?albumId=${post.id}`)
+                    fetch(`https://jsonplaceholder.typicode.com/photos?id=${post.id}`)
                         .then(photoResponse => photoResponse.json())
                         .then(photos => {
                             // Fetch comments for the post

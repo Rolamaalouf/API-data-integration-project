@@ -1,13 +1,19 @@
 /* General Styles */
-body {
-    font-family: 'Arial', sans-serif;
+html, body {
     margin: 0;
     padding: 0;
-    background-color: #f4f4f9;
-    color: #333;
-    height: auto;
 }
 
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+}
+
+/* Header */
 header {
     background-color: #333;
     color: white;
@@ -45,21 +51,22 @@ header nav ul li a:hover {
     color: #ffcc00;
 }
 
+/* Footer */
 footer {
     background-color: #333;
     color: white;
     text-align: center;
     padding: 10px;
-    position: fixed;
+    position: relative; 
     width: 100%;
     bottom: 0;
 }
 
 /* Main Sections */
 main {
-    padding: 60px 20px 20px; /* Adjusted for fixed footer */
+    padding: 60px 20px 50px;  
+    flex-grow: 1;
 }
-
 section {
     margin-bottom: 40px;
 }
@@ -88,6 +95,7 @@ section h2 {
     display: flex;
     flex-direction: column;
     height: 100%;
+    margin-bottom: 20px;
 }
 
 .post-item:hover {
@@ -132,7 +140,7 @@ section h2 {
     font-weight: bold;
     font-size: 1.1rem;
     margin-top: 15px;
-    align-self: flex-start; /* Align the link at the bottom of the content */
+    align-self: flex-start; 
     transition: color 0.3s ease;
 }
 
@@ -143,9 +151,8 @@ section h2 {
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
     .posts-list {
-        grid-template-columns: 1fr; /* Single column for small screens */
+        grid-template-columns: 1fr; 
     }
-
     header .logo h1 {
         font-size: 1.5rem;
     }
